@@ -1,0 +1,7 @@
+{
+    "terminal.integrated.cursorStyle": "line",
+    "editor.minimap.enabled": false,
+    "editor.rulers": [
+        80
+    ],
+}
