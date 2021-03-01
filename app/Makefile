@@ -1,9 +1,9 @@
-ECR_ENDPOINT := 749049578452.dkr.ecr.us-west-2.amazonaws.com
-ECR_REPO := $(ECR_ENDPOINT)/eks-demo-app
+ECR_ENDPOINT := 109716644331.dkr.ecr.eu-west-2.amazonaws.com
+ECR_REPO := $(ECR_ENDPOINT)/aws-lb-app
 
 .PHONY: push
 push: build
-	aws ecr get-login-password | docker login -u AWS --password-stdin $(ECR_ENDPOINT)
+	aws ecr get-login-password --region eu-west-2 | docker login -u AWS --password-stdin $(ECR_ENDPOINT)
 	docker push $(ECR_REPO)
 
 .PHONY: build

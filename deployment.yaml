@@ -1,21 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: aws-lb-app-frontend
+  namespace: staging
   labels:
-    app: aws-lb-demo-frontend
-  name: aws-lb-demo-frontend
+    app: aws-lb-app-frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: aws-lb-demo-frontend
+      app: aws-lb-app-frontend
   strategy: {}
   template:
     metadata:
       labels:
-        app: aws-lb-demo-frontend
+        app: aws-lb-app-frontend
     spec:
-      serviceAccountName: aws-lb-demo
+      serviceAccountName: aws-lb-app
       # Required to read AWS account token
       securityContext:
         fsGroup: 101
@@ -27,7 +28,7 @@ spec:
           emptyDir:
             medium: Memory
       containers:
-      - image: 749049578452.dkr.ecr.us-west-2.amazonaws.com/eks-demo-app:latest
+      - image: 109716644331.dkr.ecr.eu-west-2.amazonaws.com/aws-lb-app
         name: webserver
         resources:
           requests:
@@ -73,21 +74,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: aws-lb-app-backend
+  namespace: staging
   labels:
-    app: aws-lb-demo-backend
-  name: aws-lb-demo-backend
+    app: aws-lb-app-backend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: aws-lb-demo-backend
+      app: aws-lb-app-backend
   strategy: {}
   template:
     metadata:
       labels:
-        app: aws-lb-demo-backend
+        app: aws-lb-app-backend
     spec:
-      serviceAccountName: aws-lb-demo
+      serviceAccountName: aws-lb-app
       # Required to read AWS account token
       securityContext:
         fsGroup: 101
@@ -99,7 +101,7 @@ spec:
           emptyDir:
             medium: Memory
       containers:
-      - image: 749049578452.dkr.ecr.us-west-2.amazonaws.com/eks-demo-app:latest
+      - image: 109716644331.dkr.ecr.eu-west-2.amazonaws.com/aws-lb-app
         name: webserver
         resources:
           requests:

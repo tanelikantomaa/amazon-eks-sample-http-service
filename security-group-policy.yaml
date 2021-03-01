@@ -1,12 +1,12 @@
 apiVersion: vpcresources.k8s.aws/v1beta1
 kind: SecurityGroupPolicy
 metadata:
-  name: aws-lb-demo-frontend
-  namespace: default
+  name: aws-lb-app-frontend
+  namespace: staging
 spec:
   podSelector: 
     matchLabels:
-      app: aws-lb-demo-frontend
+      app: aws-lb-app-frontend
   securityGroups:
     groupIds:
       - sg-0a064359cdea6c0a1
@@ -14,12 +14,12 @@ spec:
 apiVersion: vpcresources.k8s.aws/v1beta1
 kind: SecurityGroupPolicy
 metadata:
-  name: aws-lb-demo-backend
-  namespace: default
+  name: aws-lb-app-backend
+  namespace: staging
 spec:
   podSelector: 
     matchLabels:
-      app: aws-lb-demo-backend
+      app: aws-lb-app-backend
   securityGroups:
     groupIds:
       - sg-08ef3010024dc0259
